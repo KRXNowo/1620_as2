@@ -59,3 +59,37 @@ function assemblePad() {
   newPad();
   deleteText();
 }
+
+//Click on Side Nav
+const readNote = document.querySelector(".read-note-area");
+
+function displayText(event) {
+  if (event.target.localName === "li") {
+    content = event.target.innerText;
+    console.log(content);
+  }
+
+  for (const note of notes) {
+    if (note.title == content) 
+    content = note.noteBody;
+    title2 = note.title;
+  }
+
+  readNoteTemplate = ` 
+    <div id="options">
+        <button class="deleteReadBtn">x</button>
+    <div class="text">
+        <h1>${title2}</h1>
+        <p>${content}</p>
+    </div>  `;
+  readNote.insertAdjacentHTML("afterbegin", readNoteTemplate);
+
+  //Delete the read text
+  const deleteReadBtn = document.querySelector(".deleteReadBtn");
+  function deleteReadText() {
+    while (readNote.hasChildNodes()) {
+      readNote.removeChild(readNote.firstChild);
+    }
+  }
+  deleteReadBtn.addEventListener("click", deleteReadText);
+}
