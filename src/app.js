@@ -93,3 +93,5 @@ function displayText(event) {
   }
   deleteReadBtn.addEventListener("click", deleteReadText);
 }
+
+noteDisplayArea.addEventListener("click", displayText);
